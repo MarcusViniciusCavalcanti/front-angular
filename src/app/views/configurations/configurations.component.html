@@ -1,0 +1,75 @@
+<div class="animated fadeIn">
+  <app-title-page [title]="title"></app-title-page>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <form [formGroup]="formConfiguration">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <label>Ip do dispositivo do reconhecimento</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-camrecorder"></i></span>
+                  </div>
+                  <input formControlName="ip" type="text" [ngClass]="{ 'is-invalid': submitted && formControl.ip.errors }" class="form-control" placeholder="Ip do dispositivo de reconhecimento" autocomplete="Ip do dispositivo de reconhecimento" required>
+                  <div *ngIf="submitted && formControl.ip.errors" class="invalid-feedback">
+                    <div *ngIf="formControl.ip.errors.pattern">Ip informado esta inválido</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="aside-options">
+                  <div class="clearfix mt-4">
+                    <small><b>Manual</b></small>
+                    <label class="switch switch-label switch-pill switch-success switch-sm float-right">
+                      <input type="radio" formControlName="mode" [value]="ModeSystem.MANUAL"  class="switch-input" [checked]="mode(ModeSystem.MANUAL)">
+                      <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
+                    </label>
+                  </div>
+                  <div>
+                    <small class="text-muted">Neste Modo o sistema exibira as informações do reconhecimento, e aguardará ação do usuário para acionar a abertura da cancela.</small>
+                  </div>
+                </div>
+                <div class="aside-options">
+                  <div class="clearfix mt-3">
+                    <small><b>Automático</b></small>
+                    <label class="switch switch-label switch-pill switch-success switch-sm float-right">
+                      <input type="radio" formControlName="mode" [value]="ModeSystem.AUTOMATIC" class="switch-input" [checked]="mode(ModeSystem.AUTOMATIC)">
+                      <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
+                    </label>
+                  </div>
+                  <div>
+                    <small class="text-muted">Neste modo o sistema ira acionar a abertura da cancela mediante logo após reconhecimento ser positivo.</small>
+                  </div>
+                </div>
+                <div class="aside-options">
+                  <div class="clearfix mt-3">
+                    <small><b>Desativado</b></small>
+                    <label class="switch switch-label switch-pill switch-success switch-sm float-right">
+                      <input type="radio" formControlName="mode" [value]="ModeSystem.NONE" [checked]="mode(ModeSystem.NONE)" class="switch-input">
+                      <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
+                    </label>
+                  </div>
+                  <div>
+                    <small class="text-muted">Neste modo o sistema apenas exibe a informação do reconhecimento sem ter controle sobre a cancela.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="col-md-2 col-sm-12 text-right">
+              <button type="button" (click)="submit($event)" class="btn btn-block btn-outline-info">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+     </div>
+  </div>
+</div>
